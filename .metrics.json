@@ -1,0 +1,35 @@
+{
+    "builds": {
+        "list": [
+            {
+                "cpu": "1",
+                "name": "mxd-test-build",
+                "image": "dsim-toolchain:latest",
+                "cmd": "dsim test.sv -genimage image",
+                "wavesCmd": "dsim +acc test.sv -genimage image"
+            }
+        ]
+    },
+    "regressions": [
+        {
+            "name": "mxd-test",
+            "description": "Testing MXD!",
+            "tests": {
+                "resultsDir": "<rootDir>",
+                "cpu": "1",
+                "build": "mxd-test-build",
+                "list": [
+                    {
+                        "name": "mxd-test",
+                        "cmd": "dsim -image image",
+                        "wavesCmd": "dsim -image image -waves sim.vcd.gz",
+                        "wavesFile": "sim.vcd.gz",
+                        "logFile": "dsim.log",
+                        "metricsFile": "metrics.db",
+                        "isPass": [""]
+                    }
+                ]
+            }
+        }
+    ]
+}
